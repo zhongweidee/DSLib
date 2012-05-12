@@ -37,8 +37,8 @@ const char *HashValueAtKey(Hash *h,const char *key)
    return h->retElem;
 }
 
-void HashDelete(Hash *h)
+void HashFree(Hash *h)
 {
- hdestroy_r(&(h->htab));
+ HashFree(&(h->htab));
 } 
 
