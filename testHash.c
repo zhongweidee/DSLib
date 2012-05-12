@@ -1,5 +1,7 @@
+#define _GNU_SOURCE 
 #include <stdlib.h>
 #include <stdio.h>
+#include <assert.h>
 #include "Hash.c"
 int main(void)
 {
@@ -7,7 +9,7 @@ int main(void)
     HashNew(h,30); 
     HashInsert(h,"k1","v1"); 
     HashInsert(h,"k2","v2"); 
-    printf(" k2's value is %s",HashValueAtKey(h,"k2"));
-    HashDelete(h);
+    printf(" k2's value is %s\n",HashValueAtKey(h,"k2"));
+    HashFree(h);
     free(h); 
 }

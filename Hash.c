@@ -11,34 +11,36 @@
 void HashNew(Hash *h ,size_t size)
 {
    int status;
-   h->htab ={0};
-   memset(&htab,0,sizeof(htab));
+   //h->htab ={0};
+   //h->htab =calloc(30,sizeof(struct hsearch_data));
+   h->htab=calloc(30,sizeof(struct hsearch_data));
+   memset(h->htab,0,sizeof(h->htab));
    h->initialNumOfElem=size;
    h->retElem =malloc(sizeof(ENTRY *));
    assert(h->retElem !=0);
-   ENTRY e,
-   status=hcreate_r(h->initialNumOfElem,&htab);
+   ENTRY e;
+   status=hcreate_r(h->initialNumOfElem,h->htab);
    assert(status!=0);
 }
 
-void HashInsert(Hash *h,const char *key,const char *value)
+void HashInsert(Hash *h,char *key,char *value)
 {
    int status;
    (h->elem).key=key;
    (h->elem).data=value;
-   status = hsearch_r(h->elem,ENTER,&(h->retElem),&(h->htab));
+   status = hsearch_r(h->elem,ENTER,&(h->retElem),(h->htab));
    assert(status!=0);
 }
-const char *HashValueAtKey(Hash *h,const char *key)
+void *HashValueAtKey(Hash *h,const char *key)
 {
    int status;
-   status = hsearch_r(h->elem,FIND,&(h->retElem),&(h->htab));
+   status = hsearch_r(h->elem,FIND,&(h->retElem),(h->htab));
    assert(status!=0);
-   return h->retElem;
+   return (h->retElem)->data;
 }
 
 void HashFree(Hash *h)
 {
- HashFree(&(h->htab));
+ hdestroy_r(h->htab);
 } 
 
