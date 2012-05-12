@@ -1,16 +1,8 @@
-#define _GNU_SOURCE // must for GNU hsearch
-
-typedef struct {
-    ENTRY elem;
-    ENTRY *retElem; 
-    struct hsearch_data htab; 
-    size_t initialNumOfElem; 
-    size_t existNumOfElem; 
-    struct hsearch_data htab;
-} Hash
-
-void HashNew(Hash *h ,size_t size)
-{
+#ifndef HASH_H_
+#define HASH_H_
+#include "hash.h"
+#endif
+void HashNew(Hash *h,size_t size){
    int status;
    h->htab ={0};
    memset(&htab,0,sizeof(htab));
@@ -38,8 +30,8 @@ const char *HashValueAtKey(Hash *h,const char *key)
    return h->retElem;
 }
 
-void CstringDelete(Hash *h)
+void HashFree(Hash *h)
 {
- hdestroy_r(&(h->htab));
+ HashFree(&(h->htab));
 } 
 
