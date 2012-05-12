@@ -1,8 +1,8 @@
-typedef struct {
-   void *root;
-   int (*compar)(const void *key1,const void *key2);
-   (void )(*action)(const void *node ,const VISIT *,const int depth);
-}
+#ifndef TREE_H
+#define TREE_H
+#include ./Tree.h
+#endif
+
 void TreeNew(Tree *tree,int (*compar)(const void *,const void *)){
     tree->root =NULL;
     tree->compar=compar;
