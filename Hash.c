@@ -23,7 +23,7 @@ void HashNew(Hash *h ,size_t size)
    assert(status!=0);
 }
 
-void HashInsert(Hash *h,char *key,char *value)
+void HashInsertString(Hash *h,char *key,char *value)
 {
    int status;
    (h->elem).key=key;
@@ -31,6 +31,17 @@ void HashInsert(Hash *h,char *key,char *value)
    status = hsearch_r(h->elem,ENTER,&(h->retElem),(h->htab));
    assert(status!=0);
 }
+
+
+void HashInsertPoint(Hash *h,char *key,void *value)
+{
+   int status;
+   (h->elem).key=key;
+   (h->elem).data=value;
+   status = hsearch_r(h->elem,ENTER,&(h->retElem),(h->htab));
+   assert(status!=0);
+}
+
 void *HashValueAtKey(Hash *h,const char *key)
 {
    int status;

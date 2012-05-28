@@ -7,8 +7,8 @@ int main(void)
 {
     Hash *h =malloc(sizeof(Hash));
     HashNew(h,30); 
-    HashInsert(h,"k1","v1"); 
-    HashInsert(h,"k2","v2"); 
+    HashInsertString(h,"k1","v1"); 
+    HashInsertPoint(h,"k2","v2"); 
     printf(" k2's value is %s\n",HashValueAtKey(h,"k2"));
     HashFree(h);
     free(h); 
